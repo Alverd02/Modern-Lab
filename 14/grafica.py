@@ -33,7 +33,7 @@ a = np.sqrt(np.log(0.91/np.array(T2)*50))
 
 plt.scatter((1.24*10**(3))/np.array(x), np.sqrt(np.log(0.91/np.array(T2)*50)))
 plt.plot((1.24*10**(3))/np.array(x[30:57]),(result.slope*1.24*10**(3))/np.array(x[30:57])+result.intercept,"y",label = "y=7.7x-6.9")
-plt.plot((1.24*10**(3))/np.array(x[40:80]),(result2.slope*1.24*10**(3))/np.array(x[40:80])+result2.intercept,"k",label = "y=1.06x-0.84")
+plt.plot((1.24*10**(3))/np.array(x[40:80]),(result2.slope*1.24*10**(3))/np.array(x[40:80])+result2.intercept,"k",label = "y=1.06x+0.84")
 plt.ylabel("$\\alpha^{1/2}(nm^{-1/2})$")
 plt.xlabel("$h\\nu(eV)$")
 
