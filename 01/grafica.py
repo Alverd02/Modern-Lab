@@ -28,7 +28,7 @@ params, covariance = sc.optimize.curve_fit(exponential, x_new,y1_new, p0=(max(y1
 perr = np.sqrt(np.diag(covariance))
 
 a,b = params
-print(result.slope,result.intercept,result.stderr)
+print(result.rvalue,result.intercept_stderr)
 plt.errorbar(x_new,y1_new,fmt = "o",yerr=y2_new)
 plt.plot(x_new,result.slope*np.array(x_new)+result.intercept,"r",label="y = -0.077x + 2.53")
 plt.ylabel("ln(A)")
