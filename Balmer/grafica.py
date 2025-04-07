@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Asegúrate de especificar el separador correcto
-df = pd.read_csv("600.csv", delimiter=';')
+df = pd.read_csv("300.csv", delimiter=';')
 x = df["n"].tolist()
 y = df["lambda"].tolist()
 error = df["error"].tolist()
