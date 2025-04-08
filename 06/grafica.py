@@ -3,30 +3,23 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("5(Na2).csv",delimiter = ";")
+df = pd.read_csv("6(Hoja2).csv",delimiter = ";")
 
-x = df["lambda"].tolist()
-y1 = df["comptes"].tolist()
-
-
-
-y1_new = []
+x = df["B(mT)"].tolist()
+y1 = df["mu"].tolist()
+y2 = df["error_mu"].tolist()
 
 
 
-for k,i in zip(x,y1):
-    y1_new.append(float(".".join(i.split(","))))
+result = sc.stats.linregress(x,y1)
 
+print([result.slope,result.stderr],[result.intercept,result.intercept_stderr])
 
-
-peaks, properties = sc.signal.find_peaks(y1_new,height = 250)
-filtered_peaks = [p for p in peaks if 380<= x[p] <= 750]
-print([x[p] for p in filtered_peaks],properties)
-plt.annotate("(1569,206)",xy=(1569,206),    xytext=(1569+ 100, 206+300),arrowprops=dict(facecolor="red", arrowstyle="->"), fontsize=10, color="red")
-plt.plot(x,y1_new)
-plt.plot([x[p] for p in filtered_peaks], [y1_new[p] for p in filtered_peaks], "r.", label="Peaks")
-plt.ylabel("Comptes")
-plt.xlabel("$\lambda$ (nm)")
+plt.errorbar(x,y1,fmt = "o",yerr=y2)
+plt.plot(x,result.slope*np.array(x)+result.intercept,"r",label="y = 0.04x + 24")
+plt.ylabel("$\Delta\\nu$(T)")
+plt.xlabel("B(mT)")
 
 plt.grid()
+plt.legend()
 plt.show()
