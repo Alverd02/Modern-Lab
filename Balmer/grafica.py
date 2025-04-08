@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Asegúrate de especificar el separador correcto
-df = pd.read_csv("300.csv", delimiter=';')
+df = pd.read_csv("600_mitjana.csv", delimiter=';')
 x = df["n"].tolist()
 y = df["lambda"].tolist()
 error = df["error"].tolist()
@@ -31,7 +31,7 @@ plt.ylabel('$\lambda (nm)$')
 plt.xlabel('$n^2/(n^2-4)$')
 #plt.scatter(x_new,y_new)
 plt.errorbar(x_new,y_new,yerr=error_new,ecolor="k",fmt='o')
-plt.plot(x_new,a*np.array(x_new),"r",label = "y=")
+plt.plot(x_new,a*np.array(x_new),"r",label = "y=365.7x")
 plt.legend()
 plt.grid()
 plt.show()
