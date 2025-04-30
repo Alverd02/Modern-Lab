@@ -10,13 +10,13 @@ y1 = df["mu"].tolist()
 y2 = df["error_mu"].tolist()
 
 
-
-result = sc.stats.linregress(x,y1)
-
-print([result.slope,result.stderr],[result.intercept,result.intercept_stderr])
+a = np.sum(np.array(x) * np.array(y1)) / np.sum(np.array(x) ** 2)
+residuos = np.array(y1) - a * np.array(x)
+sigma_a = np.sqrt(np.sum(residuos**2) / ((3 - 1) * np.sum(np.array(x)**2)))
+print(a,sigma_a)
 
 plt.errorbar(x,y1,fmt = "o",yerr=y2)
-plt.plot(x,result.slope*np.array(x)+result.intercept,"r",label="y = 0.04x + 24")
+plt.plot(x,a*np.array(x),"r",label="y = 0.078x")
 plt.ylabel("$\Delta\\nu$(T)")
 plt.xlabel("B(mT)")
 
